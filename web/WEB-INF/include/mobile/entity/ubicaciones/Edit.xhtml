@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="UbicacionesEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditUbicacionesTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:UbicacionesListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="UbicacionesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{ubicacionesController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditUbicacionesLabel_ubicacionID}" for="ubicacionID" />
+                            <h:outputText id="ubicacionID" value="#{ubicacionesController.selected.ubicacionID}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUbicacionesLabel_descripcion}" for="descripcion" />
+                            <p:inputText id="descripcion" value="#{ubicacionesController.selected.descripcion}" title="#{myBundle.EditUbicacionesTitle_descripcion}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUbicacionesLabel_estante}" for="estante" />
+                            <p:inputText id="estante" value="#{ubicacionesController.selected.estante}" title="#{myBundle.EditUbicacionesTitle_estante}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUbicacionesLabel_tramo}" for="tramo" />
+                            <p:inputText id="tramo" value="#{ubicacionesController.selected.tramo}" title="#{myBundle.EditUbicacionesTitle_tramo}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUbicacionesLabel_celda}" for="celda" />
+                            <p:inputText id="celda" value="#{ubicacionesController.selected.celda}" title="#{myBundle.EditUbicacionesTitle_celda}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditUbicacionesLabel_estado}" for="estado" />
+                            <p:inputText id="estado" value="#{ubicacionesController.selected.estado}" title="#{myBundle.EditUbicacionesTitle_estado}" size="50" maxlength="50"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{ubicacionesController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:UbicacionesListPage:UbicacionesListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:UbicacionesListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

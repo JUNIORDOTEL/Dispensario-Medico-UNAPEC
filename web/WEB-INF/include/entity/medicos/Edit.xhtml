@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="MedicosEditDlg" widgetVar="MedicosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditMedicosTitle}" closeOnEscape="true">
+
+            <h:form id="MedicosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{medicosController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditMedicosLabel_medicoID}" for="medicoID" />
+                        <h:outputText id="medicoID" value="#{medicosController.selected.medicoID}" />
+
+                        <p:outputLabel value="#{myBundle.EditMedicosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{medicosController.selected.nombre}" title="#{myBundle.EditMedicosTitle_nombre}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditMedicosLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{medicosController.selected.cedula}" title="#{myBundle.EditMedicosTitle_cedula}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditMedicosLabel_tandaLabor}" for="tandaLabor" />
+                        <p:inputText id="tandaLabor" value="#{medicosController.selected.tandaLabor}" title="#{myBundle.EditMedicosTitle_tandaLabor}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditMedicosLabel_especialidad}" for="especialidad" />
+                        <p:inputText id="especialidad" value="#{medicosController.selected.especialidad}" title="#{myBundle.EditMedicosTitle_especialidad}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditMedicosLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{medicosController.selected.estado}" title="#{myBundle.EditMedicosTitle_estado}" size="50" maxlength="50"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{medicosController.save}" value="#{myBundle.Save}" update="display,:MedicosListForm:datalist,:MedicosListForm:MedicosDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('MedicosEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('MedicosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

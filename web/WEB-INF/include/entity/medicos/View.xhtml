@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MedicosViewDlg" widgetVar="MedicosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewMedicosTitle}" closeOnEscape="true">
+
+            <h:form id="MedicosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{medicosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewMedicosLabel_medicoID}"/>
+                        <h:outputText value="#{medicosController.selected.medicoID}" title="#{myBundle.ViewMedicosTitle_medicoID}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicosLabel_nombre}"/>
+                        <h:outputText value="#{medicosController.selected.nombre}" title="#{myBundle.ViewMedicosTitle_nombre}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicosLabel_cedula}"/>
+                        <h:outputText value="#{medicosController.selected.cedula}" title="#{myBundle.ViewMedicosTitle_cedula}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicosLabel_tandaLabor}"/>
+                        <h:outputText value="#{medicosController.selected.tandaLabor}" title="#{myBundle.ViewMedicosTitle_tandaLabor}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicosLabel_especialidad}"/>
+                        <h:outputText value="#{medicosController.selected.especialidad}" title="#{myBundle.ViewMedicosTitle_especialidad}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicosLabel_estado}"/>
+                        <h:outputText value="#{medicosController.selected.estado}" title="#{myBundle.ViewMedicosTitle_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('MedicosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="RegistrodeVisitasEditDlg" widgetVar="RegistrodeVisitasEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditRegistrodeVisitasTitle}" closeOnEscape="true">
+
+            <h:form id="RegistrodeVisitasEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{registrodeVisitasController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditRegistrodeVisitasLabel_registrodeVisitaID}" for="registrodeVisitaID" />
+                        <h:outputText id="registrodeVisitaID" value="#{registrodeVisitasController.selected.registrodeVisitaID}" />
+
+                        <p:outputLabel value="#{myBundle.EditRegistrodeVisitasLabel_fechaVisita}" for="fechaVisita" />
+                        <p:inputText id="fechaVisita" value="#{registrodeVisitasController.selected.fechaVisita}" title="#{myBundle.EditRegistrodeVisitasTitle_fechaVisita}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditRegistrodeVisitasLabel_horaVisita}" for="horaVisita" />
+                        <p:inputText id="horaVisita" value="#{registrodeVisitasController.selected.horaVisita}" title="#{myBundle.EditRegistrodeVisitasTitle_horaVisita}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditRegistrodeVisitasLabel_recomendacion}" for="recomendacion" />
+                        <p:inputText id="recomendacion" value="#{registrodeVisitasController.selected.recomendacion}" title="#{myBundle.EditRegistrodeVisitasTitle_recomendacion}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditRegistrodeVisitasLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{registrodeVisitasController.selected.estado}" title="#{myBundle.EditRegistrodeVisitasTitle_estado}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditRegistrodeVisitasLabel_medicamentoID}" for="medicamentoID" />
+                        <p:selectOneMenu id="medicamentoID" value="#{registrodeVisitasController.selected.medicamentoID}" required="true" requiredMessage="#{myBundle.EditRegistrodeVisitasRequiredMessage_medicamentoID}" converter="medicamentosConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{medicamentosController.items}"
+                                           var="medicamentoIDItem"
+                                           itemValue="#{medicamentoIDItem}"
+                                           itemLabel="#{medicamentoIDItem.descripcion.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditRegistrodeVisitasLabel_medicoID}" for="medicoID" />
+                        <p:selectOneMenu id="medicoID" value="#{registrodeVisitasController.selected.medicoID}" required="true" requiredMessage="#{myBundle.EditRegistrodeVisitasRequiredMessage_medicoID}" converter="medicosConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{medicosController.items}"
+                                           var="medicoIDItem"
+                                           itemValue="#{medicoIDItem}"
+                                           itemLabel="#{medicoIDItem.medicoID.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.EditRegistrodeVisitasLabel_pacienteID}" for="pacienteID" />
+                        <p:selectOneMenu id="pacienteID" value="#{registrodeVisitasController.selected.pacienteID}" required="true" requiredMessage="#{myBundle.EditRegistrodeVisitasRequiredMessage_pacienteID}" converter="pacientesConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pacientesController.items}"
+                                           var="pacienteIDItem"
+                                           itemValue="#{pacienteIDItem}"
+                                           itemLabel="#{pacienteIDItem.pacienteID.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{registrodeVisitasController.save}" value="#{myBundle.Save}" update="display,:RegistrodeVisitasListForm:datalist,:RegistrodeVisitasListForm:RegistrodeVisitasDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('RegistrodeVisitasEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('RegistrodeVisitasEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MedicosCreateDlg" widgetVar="MedicosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateMedicosTitle}" closeOnEscape="true">
+
+            <h:form id="MedicosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{medicosController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateMedicosLabel_medicoID}" for="medicoID" />
+                        <p:inputText id="medicoID" value="#{medicosController.selected.medicoID}" title="#{myBundle.CreateMedicosTitle_medicoID}" required="true" requiredMessage="#{myBundle.CreateMedicosRequiredMessage_medicoID}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateMedicosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{medicosController.selected.nombre}" title="#{myBundle.CreateMedicosTitle_nombre}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateMedicosLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{medicosController.selected.cedula}" title="#{myBundle.CreateMedicosTitle_cedula}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateMedicosLabel_tandaLabor}" for="tandaLabor" />
+                        <p:inputText id="tandaLabor" value="#{medicosController.selected.tandaLabor}" title="#{myBundle.CreateMedicosTitle_tandaLabor}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateMedicosLabel_especialidad}" for="especialidad" />
+                        <p:inputText id="especialidad" value="#{medicosController.selected.especialidad}" title="#{myBundle.CreateMedicosTitle_especialidad}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateMedicosLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{medicosController.selected.estado}" title="#{myBundle.CreateMedicosTitle_estado}" size="50" maxlength="50"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{medicosController.saveNew}" value="#{myBundle.Save}" update="display,:MedicosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('MedicosCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('MedicosCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

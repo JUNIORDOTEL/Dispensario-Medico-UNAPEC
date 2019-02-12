@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TiposdeFarmacosCreateDlg" widgetVar="TiposdeFarmacosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTiposdeFarmacosTitle}" closeOnEscape="true">
+
+            <h:form id="TiposdeFarmacosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{tiposdeFarmacosController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateTiposdeFarmacosLabel_tipoFarmacoID}" for="tipoFarmacoID" />
+                        <p:inputText id="tipoFarmacoID" value="#{tiposdeFarmacosController.selected.tipoFarmacoID}" title="#{myBundle.CreateTiposdeFarmacosTitle_tipoFarmacoID}" required="true" requiredMessage="#{myBundle.CreateTiposdeFarmacosRequiredMessage_tipoFarmacoID}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTiposdeFarmacosLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{tiposdeFarmacosController.selected.descripcion}" title="#{myBundle.CreateTiposdeFarmacosTitle_descripcion}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateTiposdeFarmacosLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{tiposdeFarmacosController.selected.estado}" title="#{myBundle.CreateTiposdeFarmacosTitle_estado}" size="50" maxlength="50"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tiposdeFarmacosController.saveNew}" value="#{myBundle.Save}" update="display,:TiposdeFarmacosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TiposdeFarmacosCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('TiposdeFarmacosCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

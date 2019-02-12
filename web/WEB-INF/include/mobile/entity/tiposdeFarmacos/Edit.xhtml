@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TiposdeFarmacosEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditTiposdeFarmacosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TiposdeFarmacosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TiposdeFarmacosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{tiposdeFarmacosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditTiposdeFarmacosLabel_tipoFarmacoID}" for="tipoFarmacoID" />
+                            <h:outputText id="tipoFarmacoID" value="#{tiposdeFarmacosController.selected.tipoFarmacoID}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTiposdeFarmacosLabel_descripcion}" for="descripcion" />
+                            <p:inputText id="descripcion" value="#{tiposdeFarmacosController.selected.descripcion}" title="#{myBundle.EditTiposdeFarmacosTitle_descripcion}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditTiposdeFarmacosLabel_estado}" for="estado" />
+                            <p:inputText id="estado" value="#{tiposdeFarmacosController.selected.estado}" title="#{myBundle.EditTiposdeFarmacosTitle_estado}" size="50" maxlength="50"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{tiposdeFarmacosController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:TiposdeFarmacosListPage:TiposdeFarmacosListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:TiposdeFarmacosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MedicamentosViewDlg" widgetVar="MedicamentosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewMedicamentosTitle}" closeOnEscape="true">
+
+            <h:form id="MedicamentosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{medicamentosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewMedicamentosLabel_medicamentoID}"/>
+                        <h:outputText value="#{medicamentosController.selected.medicamentoID}" title="#{myBundle.ViewMedicamentosTitle_medicamentoID}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicamentosLabel_descripcion}"/>
+                        <h:outputText value="#{medicamentosController.selected.descripcion}" title="#{myBundle.ViewMedicamentosTitle_descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicamentosLabel_dosis}"/>
+                        <h:outputText value="#{medicamentosController.selected.dosis}" title="#{myBundle.ViewMedicamentosTitle_dosis}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicamentosLabel_estado}"/>
+                        <h:outputText value="#{medicamentosController.selected.estado}" title="#{myBundle.ViewMedicamentosTitle_estado}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicamentosLabel_marcaID}"/>
+                        <h:outputText value="#{medicamentosController.selected.marcaID.descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicamentosLabel_tipoFarmacoID}"/>
+                        <h:outputText value="#{medicamentosController.selected.tipoFarmacoID.descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewMedicamentosLabel_ubicacionID}"/>
+                        <h:outputText value="#{medicamentosController.selected.ubicacionID.descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('MedicamentosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

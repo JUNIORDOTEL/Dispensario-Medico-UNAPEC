@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PacientesViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewPacientesTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PacientesListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PacientesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{pacientesController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPacientesLabel_pacienteID}"/>
+                            <h:outputText value="#{pacientesController.selected.pacienteID}" title="#{myBundle.ViewPacientesTitle_pacienteID}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPacientesLabel_nombre}"/>
+                            <h:outputText value="#{pacientesController.selected.nombre}" title="#{myBundle.ViewPacientesTitle_nombre}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPacientesLabel_cedula}"/>
+                            <h:outputText value="#{pacientesController.selected.cedula}" title="#{myBundle.ViewPacientesTitle_cedula}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPacientesLabel_carnet}"/>
+                            <h:outputText value="#{pacientesController.selected.carnet}" title="#{myBundle.ViewPacientesTitle_carnet}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPacientesLabel_tipoPaciente}"/>
+                            <h:outputText value="#{pacientesController.selected.tipoPaciente}" title="#{myBundle.ViewPacientesTitle_tipoPaciente}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPacientesLabel_estado}"/>
+                            <h:outputText value="#{pacientesController.selected.estado}" title="#{myBundle.ViewPacientesTitle_estado}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <h:form id="menuForm">
+        <p:menu>
+            <p:submenu label="#{myBundle.Maintenance}">
+                <p:menuitem value="#{myBundle.MarcasHeading}..." outcome="/mobile/marcas/index" />
+                <p:menuitem value="#{myBundle.MedicamentosHeading}..." outcome="/mobile/medicamentos/index" />
+                <p:menuitem value="#{myBundle.MedicosHeading}..." outcome="/mobile/medicos/index" />
+                <p:menuitem value="#{myBundle.PacientesHeading}..." outcome="/mobile/pacientes/index" />
+                <p:menuitem value="#{myBundle.RegistrodeVisitasHeading}..." outcome="/mobile/registrodeVisitas/index" />
+                <p:menuitem value="#{myBundle.TiposdeFarmacosHeading}..." outcome="/mobile/tiposdeFarmacos/index" />
+                <p:menuitem value="#{myBundle.UbicacionesHeading}..." outcome="/mobile/ubicaciones/index" />
+            </p:submenu>
+            <p:menuitem value="#{myBundle.FullApp}" outcome="/index" icon="ui-icon-home"/>
+        </p:menu>
+    </h:form>
+</ui:composition>

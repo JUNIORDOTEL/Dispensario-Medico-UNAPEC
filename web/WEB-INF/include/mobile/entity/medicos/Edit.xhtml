@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="MedicosEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditMedicosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:MedicosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="MedicosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{medicosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditMedicosLabel_medicoID}" for="medicoID" />
+                            <h:outputText id="medicoID" value="#{medicosController.selected.medicoID}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditMedicosLabel_nombre}" for="nombre" />
+                            <p:inputText id="nombre" value="#{medicosController.selected.nombre}" title="#{myBundle.EditMedicosTitle_nombre}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditMedicosLabel_cedula}" for="cedula" />
+                            <p:inputText id="cedula" value="#{medicosController.selected.cedula}" title="#{myBundle.EditMedicosTitle_cedula}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditMedicosLabel_tandaLabor}" for="tandaLabor" />
+                            <p:inputText id="tandaLabor" value="#{medicosController.selected.tandaLabor}" title="#{myBundle.EditMedicosTitle_tandaLabor}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditMedicosLabel_especialidad}" for="especialidad" />
+                            <p:inputText id="especialidad" value="#{medicosController.selected.especialidad}" title="#{myBundle.EditMedicosTitle_especialidad}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditMedicosLabel_estado}" for="estado" />
+                            <p:inputText id="estado" value="#{medicosController.selected.estado}" title="#{myBundle.EditMedicosTitle_estado}" size="50" maxlength="50"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{medicosController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:MedicosListPage:MedicosListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:MedicosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UbicacionesViewDlg" widgetVar="UbicacionesViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewUbicacionesTitle}" closeOnEscape="true">
+
+            <h:form id="UbicacionesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{ubicacionesController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewUbicacionesLabel_ubicacionID}"/>
+                        <h:outputText value="#{ubicacionesController.selected.ubicacionID}" title="#{myBundle.ViewUbicacionesTitle_ubicacionID}"/>
+
+                        <h:outputText value="#{myBundle.ViewUbicacionesLabel_descripcion}"/>
+                        <h:outputText value="#{ubicacionesController.selected.descripcion}" title="#{myBundle.ViewUbicacionesTitle_descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewUbicacionesLabel_estante}"/>
+                        <h:outputText value="#{ubicacionesController.selected.estante}" title="#{myBundle.ViewUbicacionesTitle_estante}"/>
+
+                        <h:outputText value="#{myBundle.ViewUbicacionesLabel_tramo}"/>
+                        <h:outputText value="#{ubicacionesController.selected.tramo}" title="#{myBundle.ViewUbicacionesTitle_tramo}"/>
+
+                        <h:outputText value="#{myBundle.ViewUbicacionesLabel_celda}"/>
+                        <h:outputText value="#{ubicacionesController.selected.celda}" title="#{myBundle.ViewUbicacionesTitle_celda}"/>
+
+                        <h:outputText value="#{myBundle.ViewUbicacionesLabel_estado}"/>
+                        <h:outputText value="#{ubicacionesController.selected.estado}" title="#{myBundle.ViewUbicacionesTitle_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('UbicacionesViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

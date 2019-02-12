@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="MarcasCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateMarcasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:MarcasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="MarcasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{marcasController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateMarcasLabel_marcaID}" for="marcaID" />
+                            <p:inputText id="marcaID" value="#{marcasController.selected.marcaID}" title="#{myBundle.CreateMarcasTitle_marcaID}" required="true" requiredMessage="#{myBundle.CreateMarcasRequiredMessage_marcaID}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateMarcasLabel_descripcion}" for="descripcion" />
+                            <p:inputText id="descripcion" value="#{marcasController.selected.descripcion}" title="#{myBundle.CreateMarcasTitle_descripcion}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateMarcasLabel_estado}" for="estado" />
+                            <p:inputText id="estado" value="#{marcasController.selected.estado}" title="#{myBundle.CreateMarcasTitle_estado}" size="50" maxlength="50"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{marcasController.saveNew}" value="#{myBundle.Save}" update="display,:MarcasListPage:MarcasListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:MarcasListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

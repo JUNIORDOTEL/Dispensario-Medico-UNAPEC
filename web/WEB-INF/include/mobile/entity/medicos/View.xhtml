@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="MedicosViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewMedicosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:MedicosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="MedicosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{medicosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewMedicosLabel_medicoID}"/>
+                            <h:outputText value="#{medicosController.selected.medicoID}" title="#{myBundle.ViewMedicosTitle_medicoID}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewMedicosLabel_nombre}"/>
+                            <h:outputText value="#{medicosController.selected.nombre}" title="#{myBundle.ViewMedicosTitle_nombre}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewMedicosLabel_cedula}"/>
+                            <h:outputText value="#{medicosController.selected.cedula}" title="#{myBundle.ViewMedicosTitle_cedula}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewMedicosLabel_tandaLabor}"/>
+                            <h:outputText value="#{medicosController.selected.tandaLabor}" title="#{myBundle.ViewMedicosTitle_tandaLabor}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewMedicosLabel_especialidad}"/>
+                            <h:outputText value="#{medicosController.selected.especialidad}" title="#{myBundle.ViewMedicosTitle_especialidad}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewMedicosLabel_estado}"/>
+                            <h:outputText value="#{medicosController.selected.estado}" title="#{myBundle.ViewMedicosTitle_estado}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

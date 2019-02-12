@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="RegistrodeVisitasViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewRegistrodeVisitasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:RegistrodeVisitasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="RegistrodeVisitasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{registrodeVisitasController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistrodeVisitasLabel_registrodeVisitaID}"/>
+                            <h:outputText value="#{registrodeVisitasController.selected.registrodeVisitaID}" title="#{myBundle.ViewRegistrodeVisitasTitle_registrodeVisitaID}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistrodeVisitasLabel_fechaVisita}"/>
+                            <h:outputText value="#{registrodeVisitasController.selected.fechaVisita}" title="#{myBundle.ViewRegistrodeVisitasTitle_fechaVisita}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistrodeVisitasLabel_horaVisita}"/>
+                            <h:outputText value="#{registrodeVisitasController.selected.horaVisita}" title="#{myBundle.ViewRegistrodeVisitasTitle_horaVisita}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistrodeVisitasLabel_recomendacion}"/>
+                            <h:outputText value="#{registrodeVisitasController.selected.recomendacion}" title="#{myBundle.ViewRegistrodeVisitasTitle_recomendacion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistrodeVisitasLabel_estado}"/>
+                            <h:outputText value="#{registrodeVisitasController.selected.estado}" title="#{myBundle.ViewRegistrodeVisitasTitle_estado}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistrodeVisitasLabel_medicamentoID}"/>
+                            <h:outputText value="#{registrodeVisitasController.selected.medicamentoID.descripcion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistrodeVisitasLabel_medicoID}"/>
+                            <h:outputText value="#{registrodeVisitasController.selected.medicoID.medicoID}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistrodeVisitasLabel_pacienteID}"/>
+                            <h:outputText value="#{registrodeVisitasController.selected.pacienteID.pacienteID}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

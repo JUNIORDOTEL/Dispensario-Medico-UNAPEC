@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PacientesEditDlg" widgetVar="PacientesEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditPacientesTitle}" closeOnEscape="true">
+
+            <h:form id="PacientesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{pacientesController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditPacientesLabel_pacienteID}" for="pacienteID" />
+                        <h:outputText id="pacienteID" value="#{pacientesController.selected.pacienteID}" />
+
+                        <p:outputLabel value="#{myBundle.EditPacientesLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{pacientesController.selected.nombre}" title="#{myBundle.EditPacientesTitle_nombre}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditPacientesLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{pacientesController.selected.cedula}" title="#{myBundle.EditPacientesTitle_cedula}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditPacientesLabel_carnet}" for="carnet" />
+                        <p:inputText id="carnet" value="#{pacientesController.selected.carnet}" title="#{myBundle.EditPacientesTitle_carnet}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditPacientesLabel_tipoPaciente}" for="tipoPaciente" />
+                        <p:inputText id="tipoPaciente" value="#{pacientesController.selected.tipoPaciente}" title="#{myBundle.EditPacientesTitle_tipoPaciente}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditPacientesLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{pacientesController.selected.estado}" title="#{myBundle.EditPacientesTitle_estado}" size="50" maxlength="50"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pacientesController.save}" value="#{myBundle.Save}" update="display,:PacientesListForm:datalist,:PacientesListForm:PacientesDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PacientesEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PacientesEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

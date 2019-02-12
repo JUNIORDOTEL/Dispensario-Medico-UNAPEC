@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="MarcasListForm">
+
+        <p:panel header="#{myBundle.ListMarcasTitle}">
+            <p:contextMenu id="MarcasDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('MarcasListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('MarcasListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('MarcasListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('MarcasListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.MarcasMenuItem_medicamentosCollection}" icon="ui-icon-search"  action="#{marcasController.navigateMedicamentosCollection}" disabled="#{marcasController.isMedicamentosCollectionEmpty}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{marcasController.items}"
+                         lazy="false"
+                         rowKey="#{item.marcaID}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{marcasController.selected}"
+                         filteredValue="#{marcasController.filteredItems}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{marcasController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.marcaID}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:MarcasDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:MarcasDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('MarcasListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.marcaID}" filterBy="#{item.marcaID}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMarcasTitle_marcaID}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.marcaID}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.descripcion}" filterBy="#{item.descripcion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMarcasTitle_descripcion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descripcion}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.estado}" filterBy="#{item.estado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMarcasTitle_estado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estado}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{marcasController.prepareCreate}" update=":MarcasCreateForm" oncomplete="PF('MarcasCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":MarcasViewForm" oncomplete="PF('MarcasViewDialog').show()" disabled="#{empty marcasController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MarcasEditForm" oncomplete="PF('MarcasEditDialog').show()" disabled="#{empty marcasController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{marcasController.delete}" update=":growl,datalist" disabled="#{empty marcasController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

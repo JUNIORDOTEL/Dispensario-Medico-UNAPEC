@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="MedicamentosCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateMedicamentosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:MedicamentosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="MedicamentosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{medicamentosController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateMedicamentosLabel_medicamentoID}" for="medicamentoID" />
+                            <p:inputText id="medicamentoID" value="#{medicamentosController.selected.medicamentoID}" title="#{myBundle.CreateMedicamentosTitle_medicamentoID}" required="true" requiredMessage="#{myBundle.CreateMedicamentosRequiredMessage_medicamentoID}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateMedicamentosLabel_descripcion}" for="descripcion" />
+                            <p:inputText id="descripcion" value="#{medicamentosController.selected.descripcion}" title="#{myBundle.CreateMedicamentosTitle_descripcion}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateMedicamentosLabel_dosis}" for="dosis" />
+                            <p:inputText id="dosis" value="#{medicamentosController.selected.dosis}" title="#{myBundle.CreateMedicamentosTitle_dosis}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateMedicamentosLabel_estado}" for="estado" />
+                            <p:inputText id="estado" value="#{medicamentosController.selected.estado}" title="#{myBundle.CreateMedicamentosTitle_estado}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateMedicamentosLabel_marcaID}" for="marcaID" />
+                            <p:selectOneMenu id="marcaID" value="#{medicamentosController.selected.marcaID}" required="true" requiredMessage="#{myBundle.CreateMedicamentosRequiredMessage_marcaID}" converter="marcasConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{marcasController.items}"
+                                               var="marcaIDItem"
+                                               itemValue="#{marcaIDItem}"
+                                               itemLabel="#{marcaIDItem.descripcion.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateMedicamentosLabel_tipoFarmacoID}" for="tipoFarmacoID" />
+                            <p:selectOneMenu id="tipoFarmacoID" value="#{medicamentosController.selected.tipoFarmacoID}" required="true" requiredMessage="#{myBundle.CreateMedicamentosRequiredMessage_tipoFarmacoID}" converter="tiposdeFarmacosConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{tiposdeFarmacosController.items}"
+                                               var="tipoFarmacoIDItem"
+                                               itemValue="#{tipoFarmacoIDItem}"
+                                               itemLabel="#{tipoFarmacoIDItem.descripcion.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateMedicamentosLabel_ubicacionID}" for="ubicacionID" />
+                            <p:selectOneMenu id="ubicacionID" value="#{medicamentosController.selected.ubicacionID}" required="true" requiredMessage="#{myBundle.CreateMedicamentosRequiredMessage_ubicacionID}" converter="ubicacionesConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{ubicacionesController.items}"
+                                               var="ubicacionIDItem"
+                                               itemValue="#{ubicacionIDItem}"
+                                               itemLabel="#{ubicacionIDItem.descripcion.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{medicamentosController.saveNew}" value="#{myBundle.Save}" update="display,:MedicamentosListPage:MedicamentosListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:MedicamentosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

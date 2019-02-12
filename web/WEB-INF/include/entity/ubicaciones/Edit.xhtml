@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UbicacionesEditDlg" widgetVar="UbicacionesEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditUbicacionesTitle}" closeOnEscape="true">
+
+            <h:form id="UbicacionesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{ubicacionesController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditUbicacionesLabel_ubicacionID}" for="ubicacionID" />
+                        <h:outputText id="ubicacionID" value="#{ubicacionesController.selected.ubicacionID}" />
+
+                        <p:outputLabel value="#{myBundle.EditUbicacionesLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{ubicacionesController.selected.descripcion}" title="#{myBundle.EditUbicacionesTitle_descripcion}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditUbicacionesLabel_estante}" for="estante" />
+                        <p:inputText id="estante" value="#{ubicacionesController.selected.estante}" title="#{myBundle.EditUbicacionesTitle_estante}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditUbicacionesLabel_tramo}" for="tramo" />
+                        <p:inputText id="tramo" value="#{ubicacionesController.selected.tramo}" title="#{myBundle.EditUbicacionesTitle_tramo}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditUbicacionesLabel_celda}" for="celda" />
+                        <p:inputText id="celda" value="#{ubicacionesController.selected.celda}" title="#{myBundle.EditUbicacionesTitle_celda}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditUbicacionesLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{ubicacionesController.selected.estado}" title="#{myBundle.EditUbicacionesTitle_estado}" size="50" maxlength="50"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ubicacionesController.save}" value="#{myBundle.Save}" update="display,:UbicacionesListForm:datalist,:UbicacionesListForm:UbicacionesDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UbicacionesEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('UbicacionesEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

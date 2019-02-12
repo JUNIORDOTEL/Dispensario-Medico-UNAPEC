@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="RegistrodeVisitasListPage">
+        <pm:header title="#{myBundle.ListRegistrodeVisitasTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":RegistrodeVisitasCreatePage:RegistrodeVisitasCreateForm" actionListener="#{registrodeVisitasController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:RegistrodeVisitasCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="RegistrodeVisitasListForm">
+
+                <p:dataList id="datalist"
+                            paginator="true"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            pt:data-inset="true"
+                            value="#{registrodeVisitasController.items}"
+                            var="item">
+
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistrodeVisitasTitle}"/>
+                    </f:facet>
+
+                    <p:commandLink update=":RegistrodeVisitasEditPage:RegistrodeVisitasEditForm" action="pm:RegistrodeVisitasEditPage">
+                        <p>
+
+
+
+                            <h:outputText value="#{item.registrodeVisitaID}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.fechaVisita}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.horaVisita}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.recomendacion}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.estado}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.medicamentoID.descripcion}"/>
+
+
+                            <ui:remove>
+                                ,&nbsp;
+                                <h:outputText value="#{item.medicoID.medicoID}"/>
+                            </ui:remove>
+
+                            <ui:remove>
+                                ,&nbsp;
+                                <h:outputText value="#{item.pacienteID.pacienteID}"/>
+                            </ui:remove>
+                        </p>
+                        <f:setPropertyActionListener value="#{item}" target="#{registrodeVisitasController.selected}" />
+                    </p:commandLink>
+
+                    <f:facet name="footer">
+                        <h:outputText value="#{myBundle.ListRegistrodeVisitasTitle}"/>
+                    </f:facet>
+
+                </p:dataList>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

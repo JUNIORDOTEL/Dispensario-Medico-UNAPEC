@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="RegistrodeVisitasCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateRegistrodeVisitasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:RegistrodeVisitasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="RegistrodeVisitasCreateForm">
+
+                <h:panelGroup id="display" rendered="#{registrodeVisitasController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateRegistrodeVisitasLabel_registrodeVisitaID}" for="registrodeVisitaID" />
+                            <p:inputText id="registrodeVisitaID" value="#{registrodeVisitasController.selected.registrodeVisitaID}" title="#{myBundle.CreateRegistrodeVisitasTitle_registrodeVisitaID}" required="true" requiredMessage="#{myBundle.CreateRegistrodeVisitasRequiredMessage_registrodeVisitaID}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateRegistrodeVisitasLabel_fechaVisita}" for="fechaVisita" />
+                            <p:inputText id="fechaVisita" value="#{registrodeVisitasController.selected.fechaVisita}" title="#{myBundle.CreateRegistrodeVisitasTitle_fechaVisita}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateRegistrodeVisitasLabel_horaVisita}" for="horaVisita" />
+                            <p:inputText id="horaVisita" value="#{registrodeVisitasController.selected.horaVisita}" title="#{myBundle.CreateRegistrodeVisitasTitle_horaVisita}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateRegistrodeVisitasLabel_recomendacion}" for="recomendacion" />
+                            <p:inputText id="recomendacion" value="#{registrodeVisitasController.selected.recomendacion}" title="#{myBundle.CreateRegistrodeVisitasTitle_recomendacion}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateRegistrodeVisitasLabel_estado}" for="estado" />
+                            <p:inputText id="estado" value="#{registrodeVisitasController.selected.estado}" title="#{myBundle.CreateRegistrodeVisitasTitle_estado}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateRegistrodeVisitasLabel_medicamentoID}" for="medicamentoID" />
+                            <p:selectOneMenu id="medicamentoID" value="#{registrodeVisitasController.selected.medicamentoID}" required="true" requiredMessage="#{myBundle.CreateRegistrodeVisitasRequiredMessage_medicamentoID}" converter="medicamentosConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{medicamentosController.items}"
+                                               var="medicamentoIDItem"
+                                               itemValue="#{medicamentoIDItem}"
+                                               itemLabel="#{medicamentoIDItem.descripcion.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateRegistrodeVisitasLabel_medicoID}" for="medicoID" />
+                            <p:selectOneMenu id="medicoID" value="#{registrodeVisitasController.selected.medicoID}" required="true" requiredMessage="#{myBundle.CreateRegistrodeVisitasRequiredMessage_medicoID}" converter="medicosConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{medicosController.items}"
+                                               var="medicoIDItem"
+                                               itemValue="#{medicoIDItem}"
+                                               itemLabel="#{medicoIDItem.medicoID.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateRegistrodeVisitasLabel_pacienteID}" for="pacienteID" />
+                            <p:selectOneMenu id="pacienteID" value="#{registrodeVisitasController.selected.pacienteID}" required="true" requiredMessage="#{myBundle.CreateRegistrodeVisitasRequiredMessage_pacienteID}" converter="pacientesConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{pacientesController.items}"
+                                               var="pacienteIDItem"
+                                               itemValue="#{pacienteIDItem}"
+                                               itemLabel="#{pacienteIDItem.pacienteID.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{registrodeVisitasController.saveNew}" value="#{myBundle.Save}" update="display,:RegistrodeVisitasListPage:RegistrodeVisitasListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:RegistrodeVisitasListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

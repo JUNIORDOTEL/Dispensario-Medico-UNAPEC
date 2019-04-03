@@ -47,6 +47,7 @@ public class Medicos implements Serializable {
     @Size(max = 50)
     @Column(name = "Nombre")
     private String nombre;
+    @NotNull
     @Size(max = 50)
     @Column(name = "Cedula")
     private String cedula;
@@ -90,7 +91,10 @@ public class Medicos implements Serializable {
     }
 
     public void setCedula(String cedula) {
-        this.cedula = cedula;
+        if(check(cedula))
+            this.cedula = cedula;
+        else
+            this.cedula = null;
     }
 
     public String getTandaLabor() {
@@ -129,7 +133,7 @@ public class Medicos implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (medicoID != null ? medicoID.hashCode() : 0);
+        hash += (cedula != null ? cedula.hashCode() : 0);
         return hash;
     }
 
@@ -140,7 +144,7 @@ public class Medicos implements Serializable {
             return false;
         }
         Medicos other = (Medicos) object;
-        if ((this.medicoID == null && other.medicoID != null) || (this.medicoID != null && !this.medicoID.equals(other.medicoID))) {
+        if ((this.cedula == null && other.cedula != null) || (this.cedula != null && !this.cedula.equals(other.cedula))) {
             return false;
         }
         return true;
@@ -148,7 +152,27 @@ public class Medicos implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Medicos[ medicoID=" + medicoID + " ]";
+        return "model.Medicos[ medicoID=" + cedula + " ]";
     }
-    
+ 
+    public static boolean check(String ccNumber)
+        {
+                int sum = 0;
+                boolean alternate = false;
+                for (int i = ccNumber.length() - 1; i >= 0; i--)
+                {
+                        int n = Integer.parseInt(ccNumber.substring(i, i + 1));
+                        if (alternate)
+                        {
+                                n *= 2;
+                                if (n > 9)
+                                {
+                                        n = (n % 10) + 1;
+                                }
+                        }
+                        sum += n;
+                        alternate = !alternate;
+                }
+                return (sum % 10 == 0);
+        }
 }

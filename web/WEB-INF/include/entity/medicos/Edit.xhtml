@@ -22,7 +22,7 @@
                         <p:inputText id="nombre" value="#{medicosController.selected.nombre}" title="#{myBundle.EditMedicosTitle_nombre}" size="50" maxlength="50"/>
 
                         <p:outputLabel value="#{myBundle.EditMedicosLabel_cedula}" for="cedula" />
-                        <p:inputText id="cedula" value="#{medicosController.selected.cedula}" title="#{myBundle.EditMedicosTitle_cedula}" size="50" maxlength="50"/>
+                        <p:inputText id="cedula" value="#{medicosController.selected.cedula}" title="#{myBundle.EditMedicosTitle_cedula}" size="50" maxlength="50" required="true" requiredMessage="#{myBundle.CreateMedicosRequiredMessage_cedula}"/>
 
                         <p:outputLabel value="#{myBundle.EditMedicosLabel_tandaLabor}" for="tandaLabor" />
                         <p:inputText id="tandaLabor" value="#{medicosController.selected.tandaLabor}" title="#{myBundle.EditMedicosTitle_tandaLabor}" size="50" maxlength="50"/>

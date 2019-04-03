@@ -16,13 +16,13 @@
                     <p:panelGrid columns="2" columnClasses="column">
 
                         <p:outputLabel value="#{myBundle.CreateMedicosLabel_medicoID}" for="medicoID" />
-                        <p:inputText id="medicoID" value="#{medicosController.selected.medicoID}" title="#{myBundle.CreateMedicosTitle_medicoID}" required="true" requiredMessage="#{myBundle.CreateMedicosRequiredMessage_medicoID}"/>
+                        <p:inputText id="medicoID" value="#{medicosController.selected.medicoID}" title="#{myBundle.CreateMedicosTitle_medicoID}" />
 
                         <p:outputLabel value="#{myBundle.CreateMedicosLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{medicosController.selected.nombre}" title="#{myBundle.CreateMedicosTitle_nombre}" size="50" maxlength="50"/>
+                        <p:inputText id="nombre" value="#{medicosController.selected.nombre}" title="#{myBundle.CreateMedicosTitle_nombre}" size="50" maxlength="50" />
 
                         <p:outputLabel value="#{myBundle.CreateMedicosLabel_cedula}" for="cedula" />
-                        <p:inputText id="cedula" value="#{medicosController.selected.cedula}" title="#{myBundle.CreateMedicosTitle_cedula}" size="50" maxlength="50"/>
+                        <p:inputText id="cedula" value="#{medicosController.selected.cedula}" title="#{myBundle.CreateMedicosTitle_cedula}" size="50" maxlength="50" required="true" requiredMessage="#{myBundle.CreateMedicosRequiredMessage_cedula}"/>
 
                         <p:outputLabel value="#{myBundle.CreateMedicosLabel_tandaLabor}" for="tandaLabor" />
                         <p:inputText id="tandaLabor" value="#{medicosController.selected.tandaLabor}" title="#{myBundle.CreateMedicosTitle_tandaLabor}" size="50" maxlength="50"/>
